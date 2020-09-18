@@ -20,6 +20,7 @@ import CustomChannelList from "./src/CustomChannelList";
 import CustomMessage from "./src/CustomMessage";
 import InputBox from "./src/InputBox";
 import InputContainerStyles from "./src/InputContainerStyles";
+import CustomDateSeparator from "./src/CustomDateSeparator";
 
 const chatClient = new StreamChat('f8wwud5et5jd');
 const userToken =
@@ -110,6 +111,7 @@ class ChannelScreen extends PureComponent {
                         <View style={{ flex: 1, height: '100%', marginHorizontal: -10, backgroundColor: '#E5EDF8' }}>
                             <MessageList
                               Message={CustomMessage}
+                              DateSeparator={CustomDateSeparator}
                               onThreadSelect={(thread) => {
                                 this.props.navigation.navigate('Thread', {
                                   thread,

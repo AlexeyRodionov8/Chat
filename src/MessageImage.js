@@ -8,8 +8,10 @@ const MessageImage = (props) => {
   const [ height, setHeight ] = useState(1);
 
   Image.getSize(uri, (width, height) => {
-    setWidth(width);
-    setHeight(height);
+    if (height !== 1) {
+      setWidth(width);
+      setHeight(height);
+    }
   });
 
   const onLayoutHandler = (event) => {
@@ -17,12 +19,7 @@ const MessageImage = (props) => {
     setRootWidth(width);
   };
 
-  const a = width / height;
-  const imageHeight = a / rootWidth;
-  console.log(rootWidth);
-  console.log(height);
-  console.log(width);
-  console.log('\r\n');
+  const imageHeight = height * rootWidth / width;
 
   return (
     <View style={styles.container} onLayout={onLayoutHandler}>
