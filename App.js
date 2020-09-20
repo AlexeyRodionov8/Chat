@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, SafeAreaView, TouchableOpacity, Text } from 'react-native';
+import { View, SafeAreaView, TouchableOpacity, Text, Image } from 'react-native';
 import { StreamChat } from 'stream-chat';
 import {
     Chat,
@@ -21,6 +21,7 @@ import CustomMessage from "./src/CustomMessage";
 import InputBox from "./src/InputBox";
 import InputContainerStyles from "./src/InputContainerStyles";
 import CustomDateSeparator from "./src/CustomDateSeparator";
+import CustomHeader from './src/CustomHeader';
 
 const chatClient = new StreamChat('f8wwud5et5jd');
 const userToken =
@@ -94,9 +95,12 @@ class ChannelScreen extends PureComponent {
     static navigationOptions = ({ navigation }) => {
         const channel = navigation.getParam('channel');
         return {
-            headerTitle: (
-                <Text style={{ fontWeight: 'bold' }}>{channel.data.name}</Text>
-            ),
+            headerStyle: {
+                backgroundColor: '#FFFFFF',
+                height: 100,
+            },
+            headerBackImage: () => (<Image source={require('./src/assets/attach.png')} />),
+            headerTitle: props => <CustomHeader {...props} data={channel.data} />,
         };
     };
 
