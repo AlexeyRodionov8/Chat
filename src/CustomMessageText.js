@@ -53,7 +53,6 @@ const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     marginBottom: 20,
     paddingLeft: 20,
@@ -64,11 +63,13 @@ const styles = StyleSheet.create({
   containerLeft: {
     borderTopLeftRadius: 0,
     marginLeft: 30,
+    backgroundColor: '#FFFFFF',
     marginRight: windowWidth * 0.25
   },
   containerRight: {
     borderTopRightRadius: 0,
     marginRight: 30,
+    backgroundColor: '#F5FCFB',
     marginLeft: windowWidth * 0.25
   },
   message: {

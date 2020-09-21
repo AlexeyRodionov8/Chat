@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import truncate from 'lodash/truncate';
 
 import Avatar from './Avatar';
@@ -36,7 +36,6 @@ const CustomChannelList = (props) => {
   }
 
   const messageText = latestMessage.text.replace(/\n/g, ' ');
-  const truncatedMessage = truncate(messageText.replace(/\n/g, ' '), {length: latestMessageLength});
 
   let unreadBlock = null;
   if (unread > 0) {
@@ -69,9 +68,9 @@ const CustomChannelList = (props) => {
           {displayName}
         </Text>
 
-        <Text style={styles.message}>
+        <Text style={styles.message} ellipsizeMode='tail' numberOfLines={1}>
           {lastUser}
-          {truncatedMessage}
+          {messageText}
         </Text>
       </View>
 
@@ -87,8 +86,11 @@ const CustomChannelList = (props) => {
   );
 };
 
+const width = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginHorizontal: 30,
     marginVertical: 10,
     flexDirection: 'row',
@@ -100,10 +102,10 @@ const styles = StyleSheet.create({
   content: {
     marginLeft: 10,
     justifyContent: 'center',
-    flexGrow: 1,
+    width: width * 0.47,
   },
   details: {
-    flexGrow: 0,
+    flexGrow: 1
   },
   title: {
     fontWeight: 'bold',
@@ -122,8 +124,11 @@ const styles = StyleSheet.create({
     color: '#6773A2',
     fontSize: 12,
     lineHeight: 14,
+    textAlign: 'right',
   },
   unread: {
+    marginTop: 3,
+    flex: 1,
     flexDirection: 'row-reverse',
   },
   unreadCount: {

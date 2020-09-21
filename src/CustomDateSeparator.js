@@ -10,7 +10,7 @@ const CustomDateSeparator = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <Text style={styles.formatedDate}>
+        <Text style={styles.messageDate}>
           {date}
         </Text>
       </View>
@@ -27,13 +27,15 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     backgroundColor: 'white',
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    borderRadius: 15,
+    paddingHorizontal: 32,
+    paddingVertical: 5,
+    borderRadius: 30,
   },
-  formatedDate: {
+  messageDate: {
     fontSize: 12,
-    color: '#333333',
+    lineHeight: 18,
+    fontWeight: 'bold',
+    color: '#6773A2',
   }
 });
 

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, SafeAreaView, TouchableOpacity, Text, Image } from 'react-native';
+import { View, SafeAreaView, TouchableWithoutFeedback, Text, Image } from 'react-native';
 import { StreamChat } from 'stream-chat';
 import {
     Chat,
@@ -45,7 +45,12 @@ class ChannelListScreen extends PureComponent {
         return (
             <SafeAreaView>
                 <Chat client={chatClient}>
-                    <View style={{ display: 'flex', height: '100%', padding: 10, backgroundColor: 'white' }}>
+                    <View style={{
+                      display: 'flex',
+                      height: '100%',
+                      padding: 10,
+                      backgroundColor: 'white'
+                    }}>
                       <Header avatar={user.image} title='Messages' />
                       <ChannelList
                           Preview={CustomChannelList}
@@ -59,15 +64,6 @@ class ChannelListScreen extends PureComponent {
                           }}
                       />
 
-                      {/*<ChannelList*/}
-                      {/*  Preview={CustomChannelList}*/}
-                      {/*  sort={{ last_message_at: -1 }}*/}
-                      {/*  onSelect={(channel) => {*/}
-                      {/*      this.props.navigation.navigate('Channel', {*/}
-                      {/*          channel,*/}
-                      {/*      });*/}
-                      {/*  }}*/}
-                      {/*/>*/}
                     </View>
                 </Chat>
             </SafeAreaView>
@@ -95,12 +91,35 @@ class ChannelScreen extends PureComponent {
     static navigationOptions = ({ navigation }) => {
         const channel = navigation.getParam('channel');
         return {
-            headerStyle: {
-                backgroundColor: '#FFFFFF',
-                height: 100,
-            },
-            headerBackImage: () => (<Image source={require('./src/assets/attach.png')} />),
-            headerTitle: props => <CustomHeader {...props} data={channel.data} />,
+          headerStyle: {
+            backgroundColor: '#FFFFFF',
+            height: 80,
+            shadowOpacity: 0,
+            elevation: 0,
+          },
+          headerLeftContainerStyle: {
+            width: 63,
+          },
+          headerLeft: (
+            <View style={{
+              flex: 1,
+              width: 63,
+              paddingRight: 3,
+              justifyContent: 'center',
+              alignItems: 'flex-end',
+            }}>
+              <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+              <Image
+                style={{ width: 30, height: 30 }}
+                source={require('./src/assets/backButton.png')}
+              />
+              </TouchableWithoutFeedback>
+            </View>
+          ),
+          headerTitleContainerStyle: {
+            margin: -8
+          },
+          headerTitle: props => <CustomHeader {...props} data={channel.data} />,
         };
     };
 
@@ -112,7 +131,12 @@ class ChannelScreen extends PureComponent {
             <SafeAreaView>
                 <Chat client={chatClient} style={theme}>
                     <Channel client={chatClient} channel={channel}>
-                        <View style={{ flex: 1, height: '100%', marginHorizontal: -10, backgroundColor: '#E5EDF8' }}>
+                        <View style={{
+                          flex: 1,
+                          height: '100%',
+                          marginHorizontal: -10,
+                          backgroundColor: '#E5EDF8'
+                        }}>
                             <MessageList
                               Message={CustomMessage}
                               DateSeparator={CustomDateSeparator}
@@ -167,7 +191,6 @@ class ThreadScreen extends PureComponent {
                         client={chatClient}
                         channel={channel}
                         thread={thread}
-                        dummyProp="DUMMY PROP"
                     >
                         <View
                             style={{

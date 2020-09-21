@@ -15,7 +15,7 @@ export const getFormatDate = (date) => {
         if (currentDay === day) {
             return TODAY;
         }
-        if (currentDay === (day - 1)) {
+        if (currentDay === (day + 1)) {
             return YESTERDAY;
         }
     }

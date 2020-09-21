@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: '#292A31',
-    lineHeight: 22
+    lineHeight: 22,
   },
 });
 
